@@ -1,0 +1,16 @@
+inciar la base creada en docker 
+    $ docker compose up -d
+    
+genra un recurso nuevo entidad dto controlador servicio para las opreaciones crud
+nest g resource auth  
+    seleccionar restapi
+    
+    
+intalar mongoose para usar metodos orm  sin necediad de escribir querys
+$ npm install --save mongoose
+$ npm i @nestjs/mongoose mongoose
+
+
+
+intalar npm i @nestjs/config para accedera variables de entorno
+$ npm i @nestjs/config
