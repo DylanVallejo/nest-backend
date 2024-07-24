@@ -14,3 +14,6 @@ $ npm i @nestjs/mongoose mongoose
 
 intalar npm i @nestjs/config para accedera variables de entorno
 $ npm i @nestjs/config
+
+creacion de un esquema medainte la notacion @Schema 
+y definiendo sus porpiedades con la notacion @Prop
