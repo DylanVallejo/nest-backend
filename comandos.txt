@@ -17,3 +17,9 @@ $ npm i @nestjs/config
 
 creacion de un esquema medainte la notacion @Schema 
 y definiendo sus porpiedades con la notacion @Prop
+
+
+
+validaciones para dtos
+
+npm i class-validator class-transformer
