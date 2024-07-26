@@ -23,3 +23,9 @@ y definiendo sus porpiedades con la notacion @Prop
 validaciones para dtos
 
 npm i class-validator class-transformer
+
+uso de bcrytjs para hashear contraseñas
+
+npm i bcryptjs
+npm i --save-dev @types/bcryptjs    nos aydua a tener los tipos de datos
+
