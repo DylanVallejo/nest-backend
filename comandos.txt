@@ -29,3 +29,7 @@ uso de bcrytjs para hashear contraseñas
 npm i bcryptjs
 npm i --save-dev @types/bcryptjs    nos aydua a tener los tipos de datos
 
+
+usar jwt 
+
+npm install --save @nestjs/jwt
