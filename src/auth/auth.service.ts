@@ -1,14 +1,14 @@
 import { BadRequestException, Injectable, InternalServerErrorException, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { JwtService } from '@nestjs/jwt';
 import { Model } from 'mongoose';
 
 import * as bcryptjs from 'bcryptjs';
 
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
+import { RegisterDto, CreateUserDto, UpdateAuthDto, LoginDto, } from './dto'
+
 import { User } from './entities/user.entity';
-import { LoginDto } from './dto/login.dto';
-import { JwtService } from '@nestjs/jwt';
+
 import { JwtPayload } from './interfaces/jwt-payload';
 import { LoginResponse } from './interfaces/login-response';
 
@@ -36,10 +36,7 @@ export class AuthService {
         password: bcryptjs.hashSync(password, 10),
         ...userData
       })
-      
-      // const newUser = new this.userModel( createUserDto );
       await newUser.save();
-      
       // retornando el usuario sin la contraseña
       const {password: _, ...user} = newUser.toJSON();
       
@@ -54,15 +51,12 @@ export class AuthService {
   }
   
   
-  async register (): Promise<LoginResponse> {
+  async register (registerDto: RegisterDto): Promise<LoginResponse> {
     // crear un registro de usuario utilizando el create 
     // y returnar el token 
-    
-    
-    return {
-      user: user,
-      token: 'qwer'
-    };
+    await this.create( registerDto );
+  
+    return await this.login(registerDto)
   }
   
   async login(loginDto: LoginDto):Promise<LoginResponse> {

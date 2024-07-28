@@ -3,7 +3,8 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 @Schema({})
 export class User {
     
-    // _id:string  id generado automaticamente por mongo
+    _id?:string  //id generado automaticamente por mongo
+    
     @Prop({ unique: true, required:true })  //al poner unique genera un index automatico
     email: string;
     
