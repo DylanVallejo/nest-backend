@@ -10,6 +10,8 @@ import { User } from './entities/user.entity';
 import { LoginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from './interfaces/jwt-payload';
+import { LoginResponse } from './interfaces/login-response';
+
 
 
 
@@ -52,9 +54,20 @@ export class AuthService {
   }
   
   
-  async login(loginDto: LoginDto){
+  async register (): Promise<LoginResponse> {
+    // crear un registro de usuario utilizando el create 
+    // y returnar el token 
     
-    console.log({loginDto})
+    
+    return {
+      user: user,
+      token: 'qwer'
+    };
+  }
+  
+  async login(loginDto: LoginDto):Promise<LoginResponse> {
+    
+    // console.log({loginDto})
     
     const {email, password} = loginDto;
     
