@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 import {CreateUserDto, LoginDto,UpdateAuthDto,RegisterDto} from './dto'
 import { User } from './entities/user.entity';
 import { AuthGuard } from './guards/auth.guard';
+import { LoginResponse } from './interfaces/login-response';
 
 
 @Controller('auth')
@@ -33,22 +34,30 @@ export class AuthController {
   @Get()
   findAll(@Request() req: Request):Promise<User[]> {
     // const user =req['user']
-    // return user;
+    // console.log({user});
     return this.authService.findAll();
   }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.authService.findOne(+id);
+  
+  // crear controlador recibir el token y regresar una nueva instancia de LoginResponse
+  //LoginResponse
+  @UseGuards(AuthGuard)  
+  @Post('/check-token')   //puede ser meeadinte un get tambien 
+  checkToken(@Request() request: Request):Promise<LoginResponse> {
+    return this.authService.checkToken(request);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAuthDto: UpdateAuthDto) {
-    return this.authService.update(+id, updateAuthDto);
-  }
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.authService.findOne(+id);
+  // }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.authService.remove(+id);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateAuthDto: UpdateAuthDto) {
+  //   return this.authService.update(+id, updateAuthDto);
+  // }
+
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.authService.remove(+id);
+  // }
 }

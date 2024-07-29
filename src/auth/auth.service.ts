@@ -92,9 +92,19 @@ export class AuthService {
   
   
   async findUserById(userId: string) {
+    console.log({userId})
     const user = await this.userModel.findById(userId);
     const {password, ...rest} = user.toJSON();
-    return rest
+    return rest 
+  }
+  
+  // auth/check-token  todo recibir el token y retornar una nueva instancia 
+  async checkToken( request: Request ) {
+    const userToken = request['user']
+    return {
+      user: userToken,
+      token :  this.getJwtToken(userToken)
+    };
   }
 
   findOne(id: number) {
