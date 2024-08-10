@@ -1,5 +1,9 @@
+inciar proyecto en nest
+  $ nest new project-name
+
 inciar la base creada en docker 
     $ docker compose up -d
+    $ npm run start
     
 genra un recurso nuevo entidad dto controlador servicio para las opreaciones crud
 nest g resource auth  

@@ -40,10 +40,24 @@ export class AuthController {
   
   // crear controlador recibir el token y regresar una nueva instancia de LoginResponse
   //LoginResponse
-  @UseGuards(AuthGuard)  
-  @Post('/check-token')   //puede ser meeadinte un get tambien 
-  checkToken(@Request() request: Request):Promise<LoginResponse> {
-    return this.authService.checkToken(request);
+  // @UseGuards(AuthGuard)  
+  // @Post('/check-token')   //puede ser meeadinte un get tambien 
+  // checkToken(@Request() request: Request):Promise<LoginResponse> {
+  //   return this.authService.checkToken(request);
+  // }
+  
+  
+  @UseGuards( AuthGuard )
+  @Get('check-token')
+  checkToken( @Request() req: Request ): LoginResponse {
+      
+    const user = req['user'] as User;
+
+    return {
+      user,
+      token: this.authService.getJwtToken({ id: user._id })
+    }
+
   }
 
   // @Get(':id')
